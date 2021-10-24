@@ -48,7 +48,7 @@ public class LoggInnServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String inputPassord = request.getParameter("passord");
-		int timeoutISekunder =20 ;
+		int timeoutISekunder = 20 ;
 
 		if (InnloggingUtil.isGyldigPassord(inputPassord, rettPassord)) {
 			InnloggingUtil.loggInnMedTimeout(request, timeoutISekunder);

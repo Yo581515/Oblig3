@@ -58,7 +58,7 @@ public class HandlelisteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		int timeoutISekunder = 20;
+		int timeoutISekunder = 20 ;
 
 		// Oppdatere tidsreleet
 		request.getSession(true).setMaxInactiveInterval(timeoutISekunder);
