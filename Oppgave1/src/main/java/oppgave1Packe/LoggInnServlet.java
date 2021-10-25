@@ -12,11 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//@WebServlet("/"+LOGIN_URL)
-@WebServlet(name = "Min magiske Servlet", urlPatterns = "/"+LOGIN_URL)
+@WebServlet("/"+LOGIN_URL)
 public class LoggInnServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static String rettPassord = "Hemmeligt";
+	
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String utskrift="";
