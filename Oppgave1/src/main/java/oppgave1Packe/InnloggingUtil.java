@@ -22,7 +22,6 @@ public class InnloggingUtil {
 		sesjon.setMaxInactiveInterval(timeoutISekunder);
 		sesjon.setAttribute("innlogget", "JEPP");
 		sesjon.setAttribute("handelliste", new Vaagn());
-		System.out.println("har new vogn");
 	}
 
 	public static void loggUt(HttpServletRequest request) {
