@@ -20,7 +20,6 @@ import org.apache.commons.lang3.StringEscapeUtils;
 @WebServlet("/" + HANDLELISTE_URL)
 public class HandlelisteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Vaagn handleliste;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,8 +27,8 @@ public class HandlelisteServlet extends HttpServlet {
 		if (!InnloggingUtil.isInnlogget(request)) {
 			response.sendRedirect(LOGIN_URL);
 		} else {
-
-			handleliste = (Vaagn) request.getAttribute("handelliste");// får Null her ?
+			HttpSession sesjon = request.getSession(true);
+			Vaagn handleliste = (Vaagn) sesjon.getAttribute("handelliste");// får Null her ?
 			// Legger til elementa frå handlelista inn på sida.
 			String utskrift = "";
 			for (int i = 0; i < handleliste.Vaagnlength(); i++) {
@@ -61,7 +60,7 @@ public class HandlelisteServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession sesjon = request.getSession(true);
-//		handleliste = (Vaagn) sesjon.getAttribute("handelliste");
+		Vaagn handleliste = (Vaagn) sesjon.getAttribute("handelliste");
 
 		int timeoutISekunder = 20;
 
