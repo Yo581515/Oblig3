@@ -56,41 +56,44 @@ public class HandlelisteServlet extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected synchronized void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if (!InnloggingUtil.isInnlogget(request)) {
+			response.sendRedirect(LOGIN_URL);
+		} else {
+			HttpSession sesjon = request.getSession(true);
 
-		HttpSession sesjon = request.getSession(true);
-		Vaagn handleliste = (Vaagn) sesjon.getAttribute("handelliste");
+			Vaagn handleliste = (Vaagn) sesjon.getAttribute("handelliste");
 
-		int timeoutISekunder = 20;
+			// Oppdatere tidsreleet
+			int timeoutISekunder = 20;
+			sesjon.setMaxInactiveInterval(timeoutISekunder);
 
-		// Oppdatere tidsreleet
-		sesjon.setMaxInactiveInterval(timeoutISekunder);
+			// Ufarliggjøring av brukerinput
+			String nyVare = StringEscapeUtils.escapeHtml4(request.getParameter("vare"));
 
-		// Ufarliggjøring av brukerinput
-		String nyVare = StringEscapeUtils.escapeHtml4(request.getParameter("vare"));
+			String SlettVareNr = request.getParameter("SlettVareNr");
+			String SlettVare = request.getParameter("SlettVare");
 
-		String SlettVareNr = request.getParameter("SlettVareNr");
-		String SlettVare = request.getParameter("SlettVare");
+			// Nye vare
+			if (nyVare != null && !nyVare.replaceAll(" ", "").equals("") && handleliste != null) {
+				handleliste.addVare(nyVare);
 
-		// Nye vare
-		if (nyVare != null && !nyVare.replaceAll(" ", "").equals("") && handleliste != null) {
-			handleliste.addVare(nyVare);
-
-		}
-		// Slett vare
-		else if (SlettVareNr != null && handleliste != null) {
-			int SlettVareNrIndeks = Integer.parseInt(SlettVareNr);
-			if (SlettVareNrIndeks < handleliste.Vaagnlength()
-					&& SlettVare.equals(handleliste.vareAtIndex(SlettVareNrIndeks))) {
-				handleliste.removeAtIndex(SlettVareNrIndeks);
 			}
+			// Slett vare
+			else if (SlettVareNr != null && handleliste != null) {
+				int SlettVareNrIndeks = Integer.parseInt(SlettVareNr);
+				if (SlettVareNrIndeks < handleliste.Vaagnlength()
+						&& SlettVare.equals(handleliste.vareAtIndex(SlettVareNrIndeks))) {
+					handleliste.removeAtIndex(SlettVareNrIndeks);
+				}
+			}
+
+			sesjon.setAttribute("handleliste", handleliste);
+
+			// Oppdater sida
+			response.sendRedirect(HANDLELISTE_URL);
 		}
-
-		sesjon.setAttribute("handleliste", handleliste);
-
-		// Oppdater sida
-		response.sendRedirect(HANDLELISTE_URL);
 
 	}
 }
