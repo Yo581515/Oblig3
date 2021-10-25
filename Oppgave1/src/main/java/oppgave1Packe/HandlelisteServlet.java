@@ -74,12 +74,12 @@ public class HandlelisteServlet extends HttpServlet {
 		String SlettVare = request.getParameter("SlettVare");
 
 		// Nye vare
-		if (nyVare != null && !nyVare.replaceAll(" ", "").equals("") && handleliste!=null) {
+		if (nyVare != null && !nyVare.replaceAll(" ", "").equals("") && handleliste != null) {
 			handleliste.addVare(nyVare);
 
 		}
 		// Slett vare
-		else if (SlettVareNr != null && handleliste!=null) {
+		else if (SlettVareNr != null && handleliste != null) {
 			int SlettVareNrIndeks = Integer.parseInt(SlettVareNr);
 			if (SlettVareNrIndeks < handleliste.Vaagnlength()
 					&& SlettVare.equals(handleliste.vareAtIndex(SlettVareNrIndeks))) {
