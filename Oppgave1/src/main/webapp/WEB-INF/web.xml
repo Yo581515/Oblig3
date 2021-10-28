@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://java.sun.com/xml/ns/javaee" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Oppgave1</display-name>
+  
+  <welcome-file-list>
+    <welcome-file>LoggInn</welcome-file>
+  </welcome-file-list>
+  
+  
+  <context-param>
+    <param-name>persistensenhet</param-name>
+    <param-value>meldinger_unit</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>LoggInnServlet</servlet-name>
+    <servlet-class>oppgave1Packe.LoggInnServlet</servlet-class>
+    <init-param>
+      <param-name>visningsantall</param-name>
+      <param-value>3</param-value>
+    </init-param>
+  </servlet>
+</web-app>
