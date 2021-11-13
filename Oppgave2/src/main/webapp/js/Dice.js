@@ -3,25 +3,20 @@
  */
 
 class Dice {
- /**
- * @param {number} value - verdien til terningen
- */
- constructor() {
- 	this.value=0;
- }
- /**
- * Get terning verdi
- * @public
- */
- getValue() {
- return this.value;
- }
+    //piblic felt
+    maxnumber;
+    value = null;
 
-/**
- * Trill ein terning
- * @public
- */
- roll() {
- 	this.value = parseInt(Math.random()*6+1)
- }
+    constructor(maxnumber = 6) {
+        this.maxnumber = maxnumber;
+    }
+
+    throwDice() {
+        this.value = 1 + Math.trunc(this.maxnumber * Math.random());
+    }
 }
+
+const d = new Dice(6);
+d.throwDice();
+
+console.log(d.value);
