@@ -16,7 +16,7 @@ class Dice {
     }
 }
 
-const d = new Dice(6);
+/*const d = new Dice(6);
 d.throwDice();
 
-console.log(d.value);
+console.log(d.value);*/
