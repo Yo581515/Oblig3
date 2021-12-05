@@ -6,7 +6,7 @@ class DiceController {
     constructor(root) {
         this.root = root;
         this.run = this.run.bind(this);
-        root.getElementsByTagName("button")[0].addEventListener("click", this.run, true);
+        root.getElementsByTagName("button")[0].addEventListener("click", this.run);
 
     }
 
@@ -15,6 +15,7 @@ class DiceController {
         myDice.throwDice();
         let value = myDice.value;
         this.root.querySelector('span').innerText = value;
+        //this.root.querySelector('span').textContent = value;
 
     }
 }
