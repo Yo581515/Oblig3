@@ -21,7 +21,7 @@ public class InnloggingUtil {
 		HttpSession sesjon = request.getSession(true);
 		sesjon.setMaxInactiveInterval(timeoutISekunder);
 		sesjon.setAttribute("innlogget", "JEPP");
-//		sesjon.setAttribute("handelliste", new Vaagn());
+		sesjon.setAttribute("handelliste", new Vaagn());
 	}
 
 	public static void loggUt(HttpServletRequest request) {
